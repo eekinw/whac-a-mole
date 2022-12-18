@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const outerGrid = document.getElementById("grid")
 const score = document.getElementById("score")
 const timeRemaining = document.getElementById("timeRemaining")
