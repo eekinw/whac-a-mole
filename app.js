@@ -58,17 +58,6 @@ function moleAppear() {
 }
 
 
-// function whackMole() {
-//     let hitMole = this.getAttribute("data-id")
-//     console.log( hitMole)
-//     whackedMole.push(hitMole)
-//     // console.log(whackedMole)
-    
-
-//     score.textContent = "Score: " + whackedMole.length
-
-// }
-
 function whackMole() {
     // check if the game is in progress
     if(!intervalId) {
