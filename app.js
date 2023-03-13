@@ -77,9 +77,10 @@ function whackMole() {
     let hitMole = this.getAttribute("data-id");
     whackedMole.push(hitMole)
 
+
     //update the score
     score.textContent = "Score: " + whackedMole.length
-
+    console.log(whackedMole.length)
 
 }
 
@@ -104,10 +105,11 @@ function endGame() {
     score.textContent = ""
     timeRemaining.textContent = ""
     console.log("The game has ended!");
+
   }
   
+createBoard()
 
-let startingTime = 31;
 
 
 //   Use setInterval() to call a function repeatedly at a given time interval (e.g. every 1000 milliseconds).
