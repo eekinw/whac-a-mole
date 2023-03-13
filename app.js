@@ -39,8 +39,12 @@ createBoard();
 // setInterval(moleAppear, 1000)
 
 function startGame() {
+  clearInterval(timerId);
+  startingTime = 31;
+  whackedMole = [];
+  score.textContent = "Score: 0";
   intervalId = setInterval(moleAppear, 1000);
-  remainingTime()
+  remainingTime();
 }
 
 function moleAppear() {
