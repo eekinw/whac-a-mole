@@ -3,7 +3,6 @@ const outerGrid = document.getElementById("grid")
 const score = document.getElementById("score")
 const timeRemaining = document.getElementById("timeRemaining")
 
-// let randomGrid = []
 let whackedMole = []
 let intervalId = null;
 let timerId = null;
@@ -11,8 +10,6 @@ let timerId = null;
 
 const mole = document.createElement("img")
 mole.setAttribute("src", "./mouse.jpg")
-
-
 
 
 // create inner grid and put mole inside grid
@@ -91,10 +88,6 @@ function endGame() {
 
     const gridCells = document.querySelectorAll(".child")
 
-    // for(let gridCell of gridCells) {
-    //     gridCell.removeEventListener("click", whackMole)
-    // } OR the one below: 
-
     gridCells.forEach((gridCell) => {
         gridCell.removeEventListener("click", whackMole);
 
@@ -109,11 +102,6 @@ function endGame() {
     console.log("The game has ended!");
   }
   
-
-//  To create a countdown timer in JavaScript, you will need to create a function that performs the 
-// following steps:
-
-//   Initialize a variable to store the remaining time (in seconds) for the countdown. (done)
 
 let startingTime = 31;
 
@@ -137,10 +125,5 @@ function showCurrentTime() {
 
 }
 
-//   Use setTimeout() to stop the setInterval() after the countdown has reached 0.
-
-//   Use clearInterval() to stop the setInterval() if the end game button is clicked.
-
-//   Use innerHTML or textContent to display the remaining time on the page.
 
 
