@@ -1,8 +1,8 @@
-
 const outerGrid = document.getElementById("grid")
 const score = document.getElementById("score")
 const timeRemaining = document.getElementById("timeRemaining")
 
+// let randomGrid = []
 let whackedMole = []
 let intervalId = null;
 let timerId = null;
@@ -10,6 +10,8 @@ let timerId = null;
 
 const mole = document.createElement("img")
 mole.setAttribute("src", "./mouse.jpg")
+
+
 
 
 // create inner grid and put mole inside grid
@@ -29,27 +31,42 @@ function createBoard() {
         btn2.addEventListener("click", endGame)
         child.addEventListener("click", whackMole)
 
+
+
+
     }
 }
 createBoard();
 
-
-// assign mole randomly to a random grid
-// Math.floor(Math.random() * gridId.length)
-// setInterval(moleAppear, 1000)
-
 function startGame() {
-  clearInterval(timerId);
-  startingTime = 31;
-  whackedMole = [];
-  score.textContent = "Score: 0";
-  intervalId = setInterval(moleAppear, 1000);
-  remainingTime();
+    // Reset the starting time and whacked mole array
+    startingTime = 31;
+
+    // Clear the interval IDs if they are not null
+    if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+    }
+    if (timerId !== null) {
+        clearInterval(timerId);
+        timerId = null;
+    }
+
+    // Update the score and time remaining elements to their initial values
+    score.textContent = "Score: 0"
+    timeRemaining.textContent = "30";
+
+    // Start the game by calling the moleAppear function and remainingTime function
+    moleAppear();
+    intervalId = setInterval(moleAppear, 1000);
+    remainingTime();
+
 }
+
 
 function moleAppear() {
 
-    let chosenGridNumber = [Math.floor(Math.random() * outerGrid.childNodes.length)]
+    let chosenGridNumber = Math.floor(Math.random() * outerGrid.childNodes.length)
     console.log(chosenGridNumber + " is chosen!")
     // randomGrid.push(chosenGrid)
     // console.log(randomGrid)
@@ -57,6 +74,7 @@ function moleAppear() {
     console.log(chosenGrid)
     chosenGrid.appendChild(mole)
 }
+
 
 
 function whackMole() {
@@ -75,13 +93,13 @@ function whackMole() {
     // If the game is in progress and the grid cell contains a mole,
     // add the grid cell's data-id attribute to the whackedMole array
     let hitMole = this.getAttribute("data-id");
-    whackedMole.push(hitMole)
-
+    whackedMole.push(hitMole);
 
     //update the score
     score.textContent = "Score: " + whackedMole.length
-    console.log(whackedMole.length)
 
+    // only allow 1 cllick per grid
+    // this.removeEventListener("click", whackMole)
 }
 
 function endGame() {
@@ -89,7 +107,7 @@ function endGame() {
     clearInterval(timerId)
 
 
-    alert(score.textContent)
+    alert(whackedMole.length)
 
     const gridCells = document.querySelectorAll(".child")
 
@@ -101,14 +119,17 @@ function endGame() {
         }
     })
 
-  
     score.textContent = ""
     timeRemaining.textContent = ""
-    console.log("The game has ended!");
+
+    // enable the "start" button again
+    const btn = document.getElementById("startButton");
+    btn.disabled = false;
+  
+    // console.log("The game has ended!");
 
   }
-  
-createBoard()
+
 
 
 
@@ -130,6 +151,5 @@ function showCurrentTime() {
     timeRemaining.textContent = startingTime;
 
 }
-
 
 
