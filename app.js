@@ -117,7 +117,7 @@ function endGame() {
     const gridCells = document.querySelectorAll(".child")
 
     gridCells.forEach((gridCell) => {
-        // gridCell.removeEventListener("click", whackMole);
+  
 
         if(gridCell.contains(mole)) {
             gridCell.removeChild(mole)
