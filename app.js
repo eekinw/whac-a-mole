@@ -6,7 +6,7 @@ const timeRemaining = document.getElementById("timeRemaining")
 let whackedMole = []
 let intervalId = null;
 let timerId = null;
-
+let startingTime = 30;
 
 const mole = document.createElement("img")
 mole.setAttribute("src", "./mouse.jpg")
@@ -40,7 +40,8 @@ createBoard();
 
 function startGame() {
     // Reset the starting time and whacked mole array
-    startingTime = 31;
+    startingTime = 30;
+    whackedMole = [];
 
     // Clear the interval IDs if they are not null
     if (intervalId !== null) {
@@ -71,7 +72,11 @@ function moleAppear() {
     // randomGrid.push(chosenGrid)
     // console.log(randomGrid)
     let chosenGrid = outerGrid.children[chosenGridNumber]
-    console.log(chosenGrid)
+
+    if (chosenGrid.contains(mole)) {
+        return moleAppear();
+    }
+
     chosenGrid.appendChild(mole)
 }
 
@@ -99,7 +104,7 @@ function whackMole() {
     score.textContent = "Score: " + whackedMole.length
 
     // only allow 1 cllick per grid
-    // this.removeEventListener("click", whackMole)
+    this.removeChild(mole);
 }
 
 function endGame() {
@@ -112,7 +117,7 @@ function endGame() {
     const gridCells = document.querySelectorAll(".child")
 
     gridCells.forEach((gridCell) => {
-        gridCell.removeEventListener("click", whackMole);
+        // gridCell.removeEventListener("click", whackMole);
 
         if(gridCell.contains(mole)) {
             gridCell.removeChild(mole)
@@ -136,7 +141,7 @@ function endGame() {
 //   Use setInterval() to call a function repeatedly at a given time interval (e.g. every 1000 milliseconds).
 function remainingTime() {
      timerId = setInterval(showCurrentTime, 1000)
-     setTimeout(endGame, (startingTime + 1) * 1000)
+    //  setTimeout(endGame, (startingTime - 1) * 1000)
 }
 
 
@@ -146,7 +151,8 @@ function showCurrentTime() {
     startingTime-- ;
 
     if(startingTime < 0) {
-        clearInterval(timerId)
+        clearInterval(timerId);
+        endGame();
     }
     timeRemaining.textContent = startingTime;
 
