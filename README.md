@@ -6,4 +6,4 @@ plan to implement more features and improvements such as:
 3. Sound effects that play when the mole is hit or missed.
 
 
-Any comments on how to improve my code is greatly appreciated!
+Any comments on how to improve my code is greatly appreciated!!
