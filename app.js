@@ -41,6 +41,7 @@ createBoard();
 function startGame() {
     // Reset the starting time and whacked mole array
     startingTime = 30;
+    whackedMole = [];
 
     // Clear the interval IDs if they are not null
     if (intervalId !== null) {
@@ -71,7 +72,11 @@ function moleAppear() {
     // randomGrid.push(chosenGrid)
     // console.log(randomGrid)
     let chosenGrid = outerGrid.children[chosenGridNumber]
-    console.log(chosenGrid)
+
+    if (chosenGrid.contains(mole)) {
+        return moleAppear();
+    }
+
     chosenGrid.appendChild(mole)
 }
 
@@ -99,7 +104,7 @@ function whackMole() {
     score.textContent = "Score: " + whackedMole.length
 
     // only allow 1 cllick per grid
-    // this.removeEventListener("click", whackMole)
+    this.removeChild(mole);
 }
 
 function endGame() {
